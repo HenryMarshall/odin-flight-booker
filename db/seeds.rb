@@ -6,7 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Create airports
 Airport.delete_all
+airport_codes = %w(ATL LAX ORD DFW DEN)
+airports = airport_codes.map do |airport_code| 
+  Airport.create airport_code: airport_code
+end
 
-airports = %w(ATL LAX ORD DFW DEN)
-airports.each { |airport| Airport.create airport_code: airport }
+# create airports
+Flight.delete_all
+flight_number = 100
+airports.each do |origin|
+  airports.each do |destination|
+    unless origin == destination
+      flight_duration = Random.rand(8) + 1
+      # Create 3 flights for each route
+      # TODO: give separate date-times
+      3.times do
+        flight = Flight.create flight_number: flight_number,
+                               departure_time: 4.days.from_now,
+                               duration: flight_duration,
+                               from_airport: origin,
+                               to_airport: destination
+        flight_number += 1
+      end
+    end
+  end
+end
