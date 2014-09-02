@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_id: 1
+  destination_id: 1
+  flight_number: 1
+  departure_time: 2014-09-02 18:07:30
+  duration: 9.99
+
+two:
+  origin_id: 1
+  destination_id: 1
+  flight_number: 1
+  departure_time: 2014-09-02 18:07:30
+  duration: 9.99
