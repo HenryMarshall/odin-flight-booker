@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Airport.delete_all
+
+airports = %w(ATL LAX ORD DFW DEN)
+airports.each { |airport| Airport.create airport_code: airport }
