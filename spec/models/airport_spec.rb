@@ -5,6 +5,8 @@ describe Airport do
   subject { @airport }
 
   it { should respond_to(:airport_code) }
+  it { should respond_to(:departing_flights) }
+  it { should respond_to(:arriving_flights) }
   it { should be_valid }
 
   describe "without airport code" do
