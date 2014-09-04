@@ -21,10 +21,9 @@ airports.each do |origin|
     unless origin == destination
       flight_duration = Random.rand(8) + 1
       # Create 3 flights for each route
-      # TODO: give separate date-times
-      3.times do
+      3.times do |day|
         flight = Flight.create flight_number: flight_number,
-                               departure_time: 4.days.from_now,
+                               date: day.days.from_now,
                                duration: flight_duration,
                                from_airport: origin,
                                to_airport: destination
