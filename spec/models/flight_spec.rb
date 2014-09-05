@@ -17,6 +17,7 @@ describe Flight do
   it { should respond_to(:destination_id) }
   it { should respond_to(:to_airport) }
   it { should respond_to(:departure_time) }
+  it { should respond_to(:passengers) }
 
   it { should be_valid }
 
@@ -27,6 +28,17 @@ describe Flight do
 
   describe "destination should be JFK" do
     specify { expect(@flight.to_airport).to eq(@destination) }
+  end
+
+  describe '#passengers' do
+    before do
+      @passenger = @flight.passengers.build name:"Bar Foo", email:"bar@foo.com"
+    end
+
+    specify { expect(@flight.passengers).to include(@passenger) }
+    # Why doesn't this work? (internet is down or I'd check right now)
+    # its(:passengers) { should include(@passenger) }
+
   end
 
 end
