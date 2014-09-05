@@ -1,0 +1,30 @@
+%h1 NEW BOOKING
+
+%table#flight-table(border)
+  %tr
+    %th Flight #
+    %th Date
+    %th Departure Time
+    %th From
+    %th To
+    %th Duration
+  %tr
+    %td= @flight.flight_number
+    %td= @flight.date
+    %td= @flight.departure_time.strftime("%I:%M %p") 
+    %td= @flight.from_airport.airport_code
+    %td= @flight.to_airport.airport_code
+    %td= "#{@flight.duration} hours"
+
+
+
+= form_for @booking do |f|
+  = f.hidden_field :flight_id, value: @flight.id
+  - params[:num_tickets].to_i.times do |i|
+    = f.fields_for @passenger, index:i do |g|
+      .passenger
+        = g.label :name
+        = g.text_field :name
+        = g.label :email
+        = g.email_field :email
+  = f.submit "Create Booking"

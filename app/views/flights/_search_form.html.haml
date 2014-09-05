@@ -13,8 +13,8 @@
   = select_tag :date, options_for_select(@dates)
 
   / passenger count
-  = label_tag :passengers
-  = select_tag :passengers, options_for_select([[1,1],[2,2],[3,3],[4,4]])
+  = label_tag :num_tickets
+  = select_tag :num_tickets, options_for_select([[1,1],[2,2],[3,3],[4,4]])
 
   / submit
   = submit_tag "Find Flights"

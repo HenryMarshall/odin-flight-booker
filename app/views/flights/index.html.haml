@@ -5,6 +5,7 @@
 - unless @flights.nil?
 
   = form_tag '/bookings/new', method: 'get' do
+    = hidden_field_tag(:num_tickets, params[:num_tickets])
     %table#flight-table(border)
       %tr
         %th Select
@@ -24,4 +25,4 @@
           %td= flight.from_airport.airport_code
           %td= flight.to_airport.airport_code
           %td= "#{flight.duration} hours"
-    = submit_tag("Create booking")
+    = submit_tag("Choose Flight")
