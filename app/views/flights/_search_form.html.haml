@@ -1,0 +1,20 @@
+= form_tag '/flights', method: 'get' do
+
+  / from
+  = label_tag :from_airport
+  = select_tag :from_airport, options_for_select(@airports)
+
+  / to
+  = label_tag :to_airport
+  = select_tag :to_airport, options_for_select(@airports)
+
+  / departure
+  = label_tag :date
+  = select_tag :date, options_for_select(@dates)
+
+  / passenger count
+  = label_tag :passengers
+  = select_tag :passengers, options_for_select([[1,1],[2,2],[3,3],[4,4]])
+
+  / submit
+  = submit_tag "Find Flights"

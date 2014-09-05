@@ -1,22 +1,27 @@
 %h1 Flights
 
-= form_tag '/flights', method: 'get' do
+= render 'search_form'
 
-  / from
-  = label_tag :from_airport
-  = select_tag :from_airport, options_for_select(@airports)
+- unless @flights.nil?
 
-  / to
-  = label_tag :to_airport
-  = select_tag :to_airport, options_for_select(@airports)
+  = form_tag '/bookings/new', method: 'get' do
+    %table#flight-table(border)
+      %tr
+        %th Select
+        %th Flight #
+        %th Date
+        %th Departure Time
+        %th From
+        %th To
+        %th Duration
 
-  / departure
-  = label_tag :date
-  = select_tag :date, options_for_select(@dates)
-
-  / passenger count
-  = label_tag :passengers
-  = select_tag :passengers, options_for_select([[1,1],[2,2],[3,3],[4,4]])
-
-  / submit
-  = submit_tag "Find Flights"
+      - @flights.each do |flight|
+        %tr
+          %td= radio_button_tag(:flight_id, flight.id)
+          %td= flight.flight_number
+          %td= flight.date
+          %td= flight.departure_time.strftime("%I:%M %p") 
+          %td= flight.from_airport.airport_code
+          %td= flight.to_airport.airport_code
+          %td= "#{flight.duration} hours"
+    = submit_tag("Create booking")
